@@ -627,13 +627,164 @@
         .code-block .cs { color: #50fa7b; }
         .code-block .cn { color: #f1fa8c; }
 
+        /* ===== Stat metrics (slide A) ===== */
+        .stat-cards {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: clamp(16px, 2vw, 24px);
+            max-width: 1100px;
+            width: 100%;
+            margin-top: clamp(24px, 4vh, 36px);
+        }
+        .stat-card {
+            border: 1px solid rgba(0,0,0,0.06);
+            border-radius: 14px;
+            padding: clamp(20px, 2.2vw, 26px);
+            background: #fff;
+            text-align: left;
+        }
+        .stat-card .big {
+            font-size: clamp(38px, 4.6vw, 60px);
+            font-weight: 700;
+            color: #007aff;
+            line-height: 1;
+            letter-spacing: -0.02em;
+        }
+        .stat-card .lbl {
+            margin-top: 10px;
+            font-size: clamp(13px, 1.4vw, 16px);
+            font-weight: 500;
+            color: #1d1d1f;
+            line-height: 1.35;
+        }
+        .stat-card .sub {
+            margin-top: 4px;
+            color: #86868b;
+            font-size: clamp(11px, 1.1vw, 13px);
+            line-height: 1.35;
+        }
+        .stat-card .chart {
+            margin-top: 14px;
+            height: 50px;
+        }
+        .stat-card .chart svg { width: 100%; height: 100%; }
+        .source-line {
+            margin-top: clamp(16px, 2vh, 22px);
+            font-size: clamp(11px, 1.1vw, 13px);
+            color: #86868b;
+            line-height: 1.5;
+            text-align: center;
+            max-width: 900px;
+        }
+        .source-line .src {
+            font-family: 'SF Mono', 'Menlo', 'Monaco', 'Consolas', monospace;
+            font-size: 0.92em;
+        }
+
+        /* SVG line draw animation */
+        .draw-line {
+            stroke-dasharray: 600;
+            stroke-dashoffset: 600;
+            transition: stroke-dashoffset 1.4s cubic-bezier(0.16, 1, 0.3, 1) 0.4s;
+        }
+        .slide.active .draw-line { stroke-dashoffset: 0; }
+
+        /* ===== Chip groups (slide B) ===== */
+        .chip-section {
+            max-width: 1000px;
+            width: 100%;
+            margin-top: clamp(20px, 3vh, 32px);
+        }
+        .chip-section .group-label {
+            font-size: clamp(11px, 1.1vw, 13px);
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.16em;
+            color: #86868b;
+            margin: clamp(14px, 2vh, 22px) 0 10px 0;
+        }
+        .chip-section .group-label:first-child { margin-top: 0; }
+        .chip-row {
+            display: flex; flex-wrap: wrap; gap: 8px;
+        }
+        .chip-pill {
+            font-size: clamp(12px, 1.4vw, 15px);
+            font-weight: 500;
+            color: #1d1d1f;
+            background: rgba(0,0,0,0.04);
+            border: 1px solid rgba(0,0,0,0.05);
+            padding: 8px 14px;
+            border-radius: 50px;
+        }
+        .chip-pill.accent {
+            color: #007aff;
+            background: rgba(0,122,255,0.08);
+            border-color: rgba(0,122,255,0.18);
+        }
+
+        /* ===== Animated bars (slide C) ===== */
+        .bars-block {
+            width: 100%;
+            max-width: 820px;
+            margin-top: clamp(24px, 4vh, 36px);
+            display: flex; flex-direction: column;
+            gap: 16px;
+        }
+        .bar-row {
+            display: grid;
+            grid-template-columns: minmax(220px, 360px) 1fr 50px;
+            align-items: center;
+            gap: 18px;
+        }
+        .bar-row .lbl {
+            font-size: clamp(13px, 1.5vw, 16px);
+            color: #515154;
+            text-align: left;
+        }
+        .bar-track {
+            height: 8px;
+            background: rgba(0,0,0,0.05);
+            border-radius: 999px;
+            overflow: hidden;
+        }
+        .bar-fill {
+            height: 100%;
+            background: #007aff;
+            border-radius: 999px;
+            width: 0;
+            transition: width 1.2s cubic-bezier(0.16, 1, 0.3, 1) 0.3s;
+        }
+        .slide.active .bar-fill[data-w="50"] { width: 50%; }
+        .slide.active .bar-fill[data-w="40"] { width: 40%; transition-delay: 0.5s; }
+        .slide.active .bar-fill[data-w="10"] { width: 10%; transition-delay: 0.7s; background: #86868b; }
+        .bar-row .pct {
+            text-align: right;
+            font-weight: 700;
+            color: #1d1d1f;
+            font-size: clamp(13px, 1.5vw, 16px);
+        }
+
+        /* ===== Closing quote (slide E) ===== */
+        .closing-quote {
+            font-size: clamp(26px, 3.6vw, 48px);
+            font-weight: 500;
+            line-height: 1.25;
+            letter-spacing: -0.015em;
+            color: #1d1d1f;
+            max-width: 1000px;
+            text-align: center;
+        }
+        .closing-quote .accent { color: #007aff; }
+
         @media (max-width: 768px) {
             .comparison-grid, .image-text-row, .person-row,
             .crispdm-wrap, .sample-pop, .quality-grid,
-            .steps-row, .dist-row {
+            .steps-row, .dist-row, .stat-cards {
                 grid-template-columns: 1fr; gap: 24px;
             }
             .cards-container { grid-template-columns: 1fr; }
+            .bar-row { grid-template-columns: 1fr; gap: 6px; }
+            .bar-row .pct { text-align: left; }
         }
     </style>
 </head>
@@ -690,6 +841,67 @@
             <div class="slide-content">
                 <img src="photos/slide4.png" alt="ML everywhere" class="hero-image wide" />
                 <h2>Machine Learning <span class="highlight">везде</span></h2>
+            </div>
+        </div>
+
+        <!-- 4b: Demand for ML is real (positive slide A) -->
+        <div class="slide">
+            <div class="slide-content">
+                <p class="eyebrow">За цифрами</p>
+                <h2>ML - это не только хайп. Спрос реальный.</h2>
+                <div class="stat-cards">
+                    <div class="stat-card">
+                        <div class="big">+34%</div>
+                        <div class="lbl">Прогноз роста рабочих мест Data / ML</div>
+                        <div class="sub">2024 / 2034 · США</div>
+                        <div class="chart">
+                            <svg viewBox="0 0 240 50" preserveAspectRatio="none">
+                                <line x1="0" y1="44" x2="240" y2="44" stroke="rgba(0,0,0,0.06)"/>
+                                <polyline class="draw-line" points="0,40 40,38 80,34 120,28 160,20 200,12 240,4" fill="none" stroke="#007aff" stroke-width="2" stroke-linecap="round"/>
+                                <circle cx="240" cy="4" r="3" fill="#007aff"/>
+                            </svg>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="big">$120K</div>
+                        <div class="lbl">Медианная зарплата в год</div>
+                        <div class="sub">диапазон $78K - $193K+</div>
+                        <div class="chart">
+                            <svg viewBox="0 0 240 50" preserveAspectRatio="none">
+                                <line x1="20" y1="26" x2="220" y2="26" stroke="rgba(0,0,0,0.08)" stroke-width="3" stroke-linecap="round"/>
+                                <line x1="20" y1="26" x2="120" y2="26" stroke="#007aff" stroke-width="3" stroke-linecap="round" class="draw-line"/>
+                                <circle cx="20"  cy="26" r="4" fill="#fff" stroke="#86868b" stroke-width="1.5"/>
+                                <circle cx="120" cy="26" r="5" fill="#007aff"/>
+                                <circle cx="220" cy="26" r="4" fill="#fff" stroke="#1d1d1f" stroke-width="1.5"/>
+                                <text x="20"  y="46" font-family="SF Mono, Menlo, monospace" font-size="9" fill="#86868b">$78K</text>
+                                <text x="120" y="46" font-family="SF Mono, Menlo, monospace" font-size="9" fill="#007aff" text-anchor="middle" font-weight="700">$120K</text>
+                                <text x="220" y="46" font-family="SF Mono, Menlo, monospace" font-size="9" fill="#86868b" text-anchor="end">$193K</text>
+                            </svg>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="big">+256%</div>
+                        <div class="lbl">Рост вакансий с 2013 года</div>
+                        <div class="sub">накопленный, по миру</div>
+                        <div class="chart">
+                            <svg viewBox="0 0 240 50" preserveAspectRatio="none">
+                                <g fill="rgba(0,122,255,0.25)">
+                                    <rect x="10"  y="36" width="22" height="8"/>
+                                    <rect x="42"  y="30" width="22" height="14"/>
+                                    <rect x="74"  y="24" width="22" height="20"/>
+                                    <rect x="106" y="18" width="22" height="26"/>
+                                    <rect x="138" y="12" width="22" height="32"/>
+                                    <rect x="170" y="6"  width="22" height="38"/>
+                                </g>
+                                <rect x="202" y="0" width="22" height="44" fill="#007aff"/>
+                            </svg>
+                        </div>
+                    </div>
+                </div>
+                <p class="source-line">
+                    Источники: <span class="src">U.S. Bureau of Labor Statistics</span> (Occupational Outlook Handbook, 2024-2034) · <span class="src">BLS</span> May 2023 · <span class="src">Market.us / LinkedIn Jobs Report</span>
+                    <br/><span style="opacity:0.75;">Цифры по США. По СНГ публичной статистики меньше, но тренд тот же.</span>
+                </p>
             </div>
         </div>
 
@@ -830,6 +1042,38 @@
             </div>
         </div>
 
+        <!-- 9d: Where data is applied (positive slide B) -->
+        <div class="slide">
+            <div class="slide-content">
+                <p class="eyebrow">На практике</p>
+                <h2>Где это работает</h2>
+                <p class="subtitle">Чаще всего это тихие системы внутри компаний, а не лаборатории с роботами.</p>
+                <div class="chip-section">
+                    <div class="group-label">Финансы и риски</div>
+                    <div class="chip-row">
+                        <span class="chip-pill accent">Кредитный скоринг</span>
+                        <span class="chip-pill accent">Антифрод</span>
+                        <span class="chip-pill accent">Кредитные риски</span>
+                        <span class="chip-pill accent">Стратегия collection</span>
+                    </div>
+                    <div class="group-label">Маркетинг и продукт</div>
+                    <div class="chip-row">
+                        <span class="chip-pill">Прогноз оттока</span>
+                        <span class="chip-pill">Сегментация клиентов</span>
+                        <span class="chip-pill">Next-best-offer</span>
+                        <span class="chip-pill">Рекомендательные системы</span>
+                        <span class="chip-pill">Оптимизация цен</span>
+                    </div>
+                    <div class="group-label">Операции и AI</div>
+                    <div class="chip-row">
+                        <span class="chip-pill">Прогноз спроса</span>
+                        <span class="chip-pill">NLP по документам</span>
+                        <span class="chip-pill">Граф фрод-сети</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
         <!-- 10: CRISP-DM -->
         <div class="slide">
             <div class="slide-content">
@@ -960,6 +1204,31 @@
             </div>
         </div>
 
+        <!-- 14b: What separates a strong DS (positive slide D) -->
+        <div class="slide">
+            <div class="slide-content">
+                <p class="eyebrow">Что отличает</p>
+                <h2>Модель построит каждый.<br/>Заметить, где она ошибается, - сложнее.</h2>
+                <div class="cards-container" style="grid-template-columns: 1fr 1fr 1fr; max-width: 1100px;">
+                    <div class="card">
+                        <div class="num">/01</div>
+                        <h3>Контекст данных</h3>
+                        <p>Откуда взялись данные, кто и как их собирал, что в них могло быть упущено.</p>
+                    </div>
+                    <div class="card">
+                        <div class="num">/02</div>
+                        <h3>Здоровый скепсис</h3>
+                        <p>Кто попал в выборку, а кто нет. Что мы видим - и чего не видим.</p>
+                    </div>
+                    <div class="card">
+                        <div class="num">/03</div>
+                        <h3>Перевод на язык бизнеса</h3>
+                        <p>Объяснить результат тому, кто не работает с моделями, без потери смысла.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
         <!-- 15: Sample vs Population -->
         <div class="slide">
             <div class="slide-content">
@@ -1079,6 +1348,33 @@
             </div>
         </div>
 
+        <!-- 19b: Where time actually goes (positive slide C) -->
+        <div class="slide">
+            <div class="slide-content">
+                <p class="eyebrow">Реальная работа</p>
+                <h2>На что уходит время дата-сайентиста</h2>
+                <p class="subtitle">Большая часть - это не моделирование. Это то, что в курсах часто пропускают.</p>
+                <div class="bars-block">
+                    <div class="bar-row">
+                        <div class="lbl">Постановка задачи и понимание бизнеса</div>
+                        <div class="bar-track"><div class="bar-fill" data-w="50"></div></div>
+                        <div class="pct">50%</div>
+                    </div>
+                    <div class="bar-row">
+                        <div class="lbl">Feature engineering и качество данных</div>
+                        <div class="bar-track"><div class="bar-fill" data-w="40"></div></div>
+                        <div class="pct">40%</div>
+                    </div>
+                    <div class="bar-row">
+                        <div class="lbl">Само моделирование</div>
+                        <div class="bar-track"><div class="bar-fill" data-w="10"></div></div>
+                        <div class="pct">10%</div>
+                    </div>
+                </div>
+                <p class="body-text" style="margin-top: 28px; font-size: clamp(13px, 1.5vw, 16px); color: #86868b;">Модель - лёгкая часть. Понять вопрос - вот это работа.</p>
+            </div>
+        </div>
+
         <!-- 20: EDA - distributions -->
         <div class="slide">
             <div class="slide-content">
@@ -1129,6 +1425,16 @@
                         <span style="display:inline-block;width:14px;height:2px;background:#34c759;"></span> Среднее
                     </div>
                 </div>
+            </div>
+        </div>
+
+        <!-- Closing inspiration (positive slide E) -->
+        <div class="slide">
+            <div class="slide-content">
+                <p class="closing-quote">
+                    Цель ML - не строить модели.<br/>
+                    А помогать <span class="accent">принимать решения лучше</span> - быстрее и с меньшим числом догадок.
+                </p>
             </div>
         </div>
 
