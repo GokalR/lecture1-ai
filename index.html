@@ -668,17 +668,42 @@
             height: 50px;
         }
         .stat-card .chart svg { width: 100%; height: 100%; }
-        .source-line {
-            margin-top: clamp(16px, 2vh, 22px);
-            font-size: clamp(11px, 1.1vw, 13px);
-            color: #86868b;
-            line-height: 1.5;
+        .sources {
+            margin-top: clamp(20px, 3vh, 28px);
+            max-width: 1100px;
+            width: 100%;
             text-align: center;
-            max-width: 900px;
         }
-        .source-line .src {
+        .sources-label {
+            font-size: clamp(10px, 1vw, 12px);
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.18em;
+            color: #86868b;
+            margin-bottom: 10px;
+        }
+        .sources-row {
+            display: inline-grid;
+            grid-template-columns: auto 1fr;
+            gap: 6px 12px;
+            text-align: left;
+            font-size: clamp(11px, 1.15vw, 13px);
+            line-height: 1.4;
+        }
+        .sources-row .src-tag {
             font-family: 'SF Mono', 'Menlo', 'Monaco', 'Consolas', monospace;
-            font-size: 0.92em;
+            font-weight: 700;
+            color: #007aff;
+            white-space: nowrap;
+        }
+        .sources-row .src-name {
+            color: #515154;
+        }
+        .sources-note {
+            margin-top: 12px;
+            font-size: clamp(10px, 1vw, 12px);
+            color: #86868b;
+            font-style: italic;
         }
 
         /* SVG line draw animation */
@@ -828,7 +853,7 @@
 &nbsp;&nbsp;<span class="cn">"name"</span>: <span class="cs">"Bota"</span>,<br/>
 &nbsp;&nbsp;<span class="cn">"city"</span>: <span class="cs">"Almaty, KZ"</span>,<br/>
 &nbsp;&nbsp;<span class="cn">"born"</span>: <span class="cs">"1989-12-19"</span>,<br/>
-&nbsp;&nbsp;<span class="cn">"link"</span>: <span class="cs">"breakinto.tech"</span><br/>
+&nbsp;&nbsp;<span class="cn">"linkedin"</span>: <span class="cs">"<a href="https://uk.linkedin.com/in/bota-abdraimova" target="_blank" rel="noopener" style="color: #50fa7b; text-decoration: underline;">bota-abdraimova</a>"</span><br/>
 }
                         </div>
                     </div>
@@ -848,7 +873,7 @@
         <div class="slide">
             <div class="slide-content">
                 <p class="eyebrow">За цифрами</p>
-                <h2>ML - это не только хайп. Спрос реальный.</h2>
+                <h2>Рынок ML: реальный спрос в цифрах</h2>
                 <div class="stat-cards">
                     <div class="stat-card">
                         <div class="big">+34%</div>
@@ -898,10 +923,15 @@
                         </div>
                     </div>
                 </div>
-                <p class="source-line">
-                    Источники: <span class="src">U.S. Bureau of Labor Statistics</span> (Occupational Outlook Handbook, 2024-2034) · <span class="src">BLS</span> May 2023 · <span class="src">Market.us / LinkedIn Jobs Report</span>
-                    <br/><span style="opacity:0.75;">Цифры по США. По СНГ публичной статистики меньше, но тренд тот же.</span>
-                </p>
+                <div class="sources">
+                    <div class="sources-label">Источники</div>
+                    <div class="sources-row">
+                        <span class="src-tag">+34%</span><span class="src-name">BLS · Occupational Outlook Handbook 2024-2034</span>
+                        <span class="src-tag">$120K</span><span class="src-name">BLS · May 2023</span>
+                        <span class="src-tag">+256%</span><span class="src-name">Market.us · LinkedIn Jobs Report</span>
+                    </div>
+                    <div class="sources-note">Цифры по США. По СНГ публичной статистики меньше, но тренд тот же.</div>
+                </div>
             </div>
         </div>
 
